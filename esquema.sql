@@ -16,6 +16,16 @@ CREATE TABLE produto (
     FOREIGN KEY (categoria_id) REFERENCES categoria(categoria_id)
 );
 
+CREATE TABLE login (
+    login_id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha_hash VARCHAR(255) NOT NULL,
+    endereco VARCHAR(255) DEFAULT NULL,
+    data_criacao DATETIME NOT NULL,
+    data_att DATETIME NOT NULL
+);
+
+
 CREATE TABLE categoria (
     categoria_id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR (100) NOT NULL
@@ -27,16 +37,6 @@ CREATE TABLE pedido (
     data_pedido DATETIME NOT NULL,
     valor_total DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id)
-);
-
-create table pedido_id (
-    item_pedido_id INT PRIMARY KEY AUTO_INCREMENT,
-    pedido_id INT,
-    produto_id INT,
-    quantidade INT NOT NULL,
-    preco_unitario DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (pedido_id) REFERENCES pedido(pedido_id),
-    FOREIGN KEY (produto_id) REFERENCES produto(produto_id)
 );
 
 -- Tabela para carrinho de compras
