@@ -1,0 +1,27 @@
+meta {
+  name: cadastrar um produto
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/api/produtos
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Batom Vermelho",
+    "descricao": "Batom matte de longa duração",
+    "preco": 29.90,
+    "estoque": 15,
+    "categoria_id": 1,
+    "imagem_url": "https://exemplo.com/batom-vermelho.jpg"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+}

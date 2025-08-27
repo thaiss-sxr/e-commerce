@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "lojamaquiagem",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

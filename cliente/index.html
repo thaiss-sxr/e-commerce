@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: #ddd;
+        background-color: rgb(133, 171, 241);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lista de produtos cadastrados</h1>
+    <ul id="listinha"></ul>
+    <script>
+      const listinha = document.getElementById("listinha");
+      // Puxar os produtos da minha API
+      fetch("http://localhost:3000/api/produtos")
+        /*Alocar o json de resposta na minha memória*/
+        .then((response) => response.json())
+        /*Para cada elemento no json da reposta*/
+        .then((data) => {
+         data.forEach((produto) => {
+  const li = document.createElement("li");
+
+  li.textContent = `${produto.nome} - R$ ${Number(produto.preco).toFixed(2)} - ${produto.categoria}`;
+
+  const img = document.createElement("img");
+  img.src = produto.imagem_url;
+  img.alt = produto.nome;
+  img.width = 100;
+
+  li.appendChild(img);
+  listinha.appendChild(li);
+});
+        })
+        .catch((error) => console.error("Erro ao buscar produtos:", error));
+    </script>
+  </body>
+</html>
